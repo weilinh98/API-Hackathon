@@ -1,5 +1,6 @@
 $(document).ready(intializeApp);
 
 function intializeApp() {
-  //code
+  var destinationDrop = new Destination();
+  destinationDrop.destinationsRender();
 }
