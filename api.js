@@ -2,7 +2,6 @@ class ApiGenerator {
   constructor(apiUrl) {
     this.apiUrl = apiUrl;
     this.response = null;
-
     this.processGetServerData = this.processGetServerData.bind(this);
     this.processGetServerError = this.processGetServerError.bind(this);
   }

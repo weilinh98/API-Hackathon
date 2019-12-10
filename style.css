@@ -3,6 +3,7 @@ body {
   flex-wrap: wrap;
   height: 100vh;
   overflow: scroll;
+  margin: 0;
 }
 body * {
   box-sizing: border-box;
@@ -11,4 +12,62 @@ body * {
   height: 100%;
   width: 100%;
   border: solid black 1px;
+}
+#weilin{
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.taco-selection{
+  height: 20%;
+}
+.taco-recipe{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 60%;
+  width: 70%;
+}
+.book{
+  position: relative;
+  width: 30%;
+  height: 40%;
+  transform-style: preserve-3d;
+  transform: perspective(2000px)
+}
+
+.book .cover{
+  position: relative;
+  width: 70%;
+  height: 70%;
+  box-sizing: border-box;
+  transform-origin: left;
+  z-index: 1;
+  transition: 1s;
+}
+
+.book:hover .cover{
+  transform: rotateY(-135deg)
+}
+
+.cover > img{
+  border-radius: 20px;
+  background-size: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+
+}
+
+.book .details{
+  position: relative;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: 20%;
+  height: 100%;
+  width: 100%;
 }
