@@ -13,6 +13,32 @@ body * {
   width: 100%;
   border: solid black 1px;
 }
+
+/* css for Andrew's container stuff */
+#andrew, .formContainer{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.formContainer {
+  width: 100%;
+  display: relative;
+}
+/*
+.destinations points to original select-drop-down menu
+.select-hide points to drop-down menu;
+*/
+.destinations,
+.select-hide {
+  display: none;
+}
+.selectContainer {
+  width: 50%;
+  background-color: dodgerblue;
+}
+
+
+/* css for others */
 #weilin{
   display: flex;
   flex-wrap: wrap;
