@@ -2,12 +2,13 @@ body {
   display: flex;
   flex-wrap: wrap;
   height: 100vh;
+  overflow: scroll;
 }
 body * {
   box-sizing: border-box;
 }
 .temporary_container {
-  height: 30%;
+  height: 100%;
   width: 100%;
   border: solid black 1px;
 }
