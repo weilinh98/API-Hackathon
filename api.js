@@ -1,14 +1,15 @@
 class ApiGenerator {
   constructor(apiUrl) {
     this.apiUrl = apiUrl
+    console.log(this.apiUrl);
 
     this.processGetServerData = this.processGetServerData.bind(this);
     this.processGetServerError = this.processGetServerError.bind(this);
   }
 
-  getResponse(url) {
+  getResponse(url, type) {
     var ajaxConfigObject = {
-      dataType: "json",
+      dataType: type,
       url: url,
       method: "GET",
 
@@ -19,9 +20,11 @@ class ApiGenerator {
   }
 
   processGetServerData(response) {
-    console.log(response);
+    console.log(" success", response);
+    return response;
   }
   processGetServerError(response) {
-    console.log(response);
+    console.log("error", response);
+    return response;
   }
 }
