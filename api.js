@@ -1,8 +1,9 @@
 class ApiGenerator {
-  constructor(apiUrl) {
+  constructor(apiUrl, componentCallback) {
     this.apiUrl = apiUrl;
     this.response = null;
-    this.type = null;
+    this.componentCallback = componentCallback;
+
     this.processGetServerData = this.processGetServerData.bind(this);
     this.processGetServerError = this.processGetServerError.bind(this);
   }
@@ -16,19 +17,14 @@ class ApiGenerator {
       success: this.processGetServerData,
       error: this.processGetServerError,
     };
-    $.ajax(ajaxConfigObject);
-    this.type = type;
+   return $.ajax(ajaxConfigObject);
   }
 
   processGetServerData(response) {
-    if (this.type === 'text') {
-      this.response = response.split('\n');
-      var destinations = new Destination(this.response);
-    } else {
-      console.log(response);
-    }
+    this.componentCallback(response);
   }
+
   processGetServerError(error) {
-      console.log(error);
+    console.log('error:', error);
   }
 }

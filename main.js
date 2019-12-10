@@ -3,7 +3,7 @@ $(document).ready(intializeApp);
 function intializeApp() {
 
   var destinationDrop = new Destination();
-  destinationDrop.destinationsRender();
+  destinationDrop.checkToRun();
   var taco = new Taco();
   taco.addClickHandler();
 
