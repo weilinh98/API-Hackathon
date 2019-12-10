@@ -14,43 +14,13 @@ class Transportation {
   }
 
   calculateTravelTime() {
-    return (this.parsecToMile / this.marsDistance * this.marsTime).toFixed(2);
+    return (this.mileDistance / this.marsDistance * this.marsTime).toFixed(2);
   }
 
   formatTime() {
     this.mileDistance = this.convertParsecToMile();
     this.calculateTravelTime = this.calculateTravelTime();
     let timeInCalculation = this.calculateTravelTime;
-    // let millennium = null;
-    // let centry = null;
-    // let decade = null;
-    // let year = null;
-    // let month = null;
-    // let day = null;
-    // let hour = null;
-    // let minute = null;
-    // let second = null;
-    // const millenniumToSeconds = 3.15e10;
-    // const centryToSeconds = 3.15e9;
-    // const decadeToSeconds = 3.15e8;
-    // const yearToSeconds = 3.15e7;
-    // const monthToSeconds = 2.63e6;
-    // const dayToSeconds = 86400;
-    // const hourToSeconds = 3600;
-    // const minuteToSeconds = 60;
-    // if (timeInCalculation >= millenniumToSeconds) {
-    //   millennium = this.separateTime(millenniumToSeconds, timeInCalculation);
-    //   timeInCalculation = this.getRemainedTime(millenniumToSeconds);
-    // }
-    // if (timeInCalculation >= centryToSeconds) {
-    //   centry = this.separateTime(centryToSeconds, timeInCalculation);
-    //   timeInCalculation = this.getRemainedTime(centryToSeconds);
-    // }
-    // if (timeInCalculation >= decadeToSeconds) {
-    //   decade = this.separateTime(decadeToSeconds, timeInCalculation);
-    //   timeInCalculation = this.getRemainedTime(decadeToSeconds);
-    // }
-    // if (timeInCalculation >= )
     let timeSegments = {
       millennium: {
         convertion: 3.15e10,
@@ -93,6 +63,8 @@ class Transportation {
       if (timeInCalculation >= timeSegments[key].convertion) {
         timeSegments[key].time = this.separateTime(timeSegments[key].convertion, timeInCalculation);
         timeInCalculation = this.getRemainedTime(timeSegments[key].convertion);
+      } else {
+        timeSegments[key].time = 0;
       }
     }
     console.log("time needed: " + timeSegments.millennium.time + " millennium, " + timeSegments.centry.time + " centry, " + timeSegments.decade.time + " decade, " + timeSegments.year.time + " year, " + timeSegments.month.time + " month, " + timeSegments.day.time + " day, " + timeSegments.hour.time + " hour, " + timeSegments.minute.time + " minute, " + timeSegments.second.time + " second");
@@ -106,7 +78,6 @@ class Transportation {
     return this.calculateTravelTime % timeConvertionNumber;
   }
 }
-//convert time to mm/cc/dd/yy/mm/dd/hh/mm/ss
 //create entertainment class using time
 
 //get spaceX spaceship info using api
