@@ -6,9 +6,9 @@ class ApiGenerator {
     this.processGetServerError = this.processGetServerError.bind(this);
   }
 
-  getResponse(url) {
+  getResponse(url, type) {
     var ajaxConfigObject = {
-      dataType: "json",
+      dataType: type,
       url: url,
       method: "GET",
 
