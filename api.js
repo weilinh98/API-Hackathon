@@ -3,7 +3,8 @@ class ApiGenerator {
     this.apiUrl = apiUrl;
     this.response = null;
     this.componentCallback = componentCallback;
-    this.componentCallback = this.componentCallback.bind(this);
+
+    this.processGetServerData = this.processGetServerData.bind(this);
     this.processGetServerError = this.processGetServerError.bind(this);
   }
 
@@ -13,18 +14,17 @@ class ApiGenerator {
       url: url,
       method: "GET",
 
-      success: this.componentCallback,
+      success: this.processGetServerData,
       error: this.processGetServerError,
     };
    return $.ajax(ajaxConfigObject);
   }
 
-  returnResponse(response) {
-    return this.response;
+  processGetServerData(response) {
+    this.componentCallback(response);
   }
 
   processGetServerError(error) {
-    this.response = error.split('\n');
-    console.log(this.response, 'error');
+    console.log('error:', error);
   }
 }

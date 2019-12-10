@@ -13,6 +13,53 @@ body * {
   width: 100%;
   border: solid black 1px;
 }
+
+/* css for Andrew's container stuff */
+#andrew, .formContainer{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.formContainer {
+  position: relative;
+  cursor: pointer;
+  height: 50%;
+}
+/*
+.destinations points to original select-drop-down menu
+.select-hide points to drop-down menu;
+*/
+.destinations,
+.select_hide {
+  display: none;
+}
+.selectContainer {
+  background-color: sandybrown;
+  display: inline-block;
+  margin: 30px auto;
+  padding: 20px;
+}
+.selectContainer:hover {
+  background-color: rgb(220, 124, 6);
+}
+/* .options target the options container */
+.options {
+  height: 100%;
+  overflow-y: scroll;
+  text-align: center;
+}
+.option_divs {
+  padding: 10px;
+  border: 1px solid black;
+  border-top: none;
+  background-color: springgreen;
+}
+.option_divs:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+/* css for others */
 #weilin{
   display: flex;
   flex-wrap: wrap;
