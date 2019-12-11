@@ -13,7 +13,6 @@ class Taco{
   }
 
   getTacoDataFromServer(){
-    debugger;
     var ApiForTaco = new ApiGenerator(this.randomTacoUrl, this.processGetTacoDataFromServer);
     this.tacoResponse = ApiForTaco.getResponse(this.randomTacoUrl, "json");
     this.processGetTacoDataFromServer(this.tacoResponse);
