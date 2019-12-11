@@ -1,7 +1,7 @@
 class Taco{
   constructor(){
     this.randomTacoUrl = "http://taco-randomizer.herokuapp.com/random/";
-    this.tacoGenerator = $('#taco-generator');
+    this.tacoGenerator = null;
     this.detailsPage = $('.details');
     this.cover = $('.cover');
     this.tacoDomElement = null;
@@ -10,14 +10,16 @@ class Taco{
     this.processGetTacoDataFromServer = this.processGetTacoDataFromServer.bind(this);
   }
 
-  addClickHandler(){
-    this.tacoGenerator.on('click', this.getTacoDataFromServer);
-    this.cover.on('click', ()=>{this.cover.addClass('cover-rotate')});
-    this.detailsPage.on('click', ()=> {this.detailsPage.addClass('details-rotate')});
+  renderMain(){
+    var container = $('<div>').attr('id', 'taco-container');
+    var tacoSelection = $('<div>').addClass('taco-selection');
+    var title = $('<h3>').text('Generate a Full Fantastic Taco Recipe for Your Trip!');
+    this.tacoGenerator = $('<button>').attr('id', 'taco-generator').text('Get my Taco!').on('click', this.getTacoDataFromServer);
+    $('body').append(container.append(tacoSelection.append(title, this.tacoGenerator)));
   }
 
   getTacoDataFromServer(){
-    this.tacoGenerator.hide();
+    this.tacoGenerator.remove();
     var ApiForTaco = new ApiGenerator(this.randomTacoUrl, this.processGetTacoDataFromServer);
     ApiForTaco.getResponse(this.randomTacoUrl, "json");
   }
@@ -39,17 +41,26 @@ class Taco{
       shell: response.shell.recipe,
     }
     var tacoName = taco.baseLayer + " with " + taco.condiment + " garnished with " + taco.mixin + " topped off with " + taco.seasoning + " wrapped in " + taco.shell;
-    this.updateRecipeOnDom(tacoName, recipe);
+    this.renderRecipe(tacoName, recipe);
   }
 
-
-  updateRecipeOnDom(taconame, recipe) {
-    $('.details').text(taconame);
-    for(var key in recipe){
-      var section = $('<div>').text(recipe[key]);
-      $('.recipe').append(section);
+  renderRecipe(tacoName, generatedRecipe) {
+    var tacoRecipe = $('<div>').addClass('taco-recipe');
+    var book = $('<div>').addClass('book');
+    var cover = $('<div>').addClass('cover');
+    var coverImage = $('<img>').attr('src', './taco-book.jpeg')
+    var details = $('<div>').addClass('details').text(tacoName);
+    var recipe = $('<div>').addClass('recipe').text(tacoRecipe);
+    var part;
+    for (var key in generatedRecipe) {
+      part = $('<div>').text(generatedRecipe[key])
+      recipe.append(part);
     }
-    $('.taco-recipe').show();
+    cover.append(coverImage);
+    book.append(cover, details, recipe);
+    $('body').append(tacoRecipe.append(book));
+    cover.on('click', () => { cover.addClass('cover-rotate') });
+    details.on('click', () => { details.addClass('details-rotate') });
   }
 
 }
