@@ -17,7 +17,7 @@ class ApiGenerator {
       success: this.processGetServerData,
       error: this.processGetServerError,
     };
-   return $.ajax(ajaxConfigObject);
+    $.ajax(ajaxConfigObject);
   }
 
   processGetServerData(response) {
