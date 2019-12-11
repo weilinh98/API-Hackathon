@@ -22,6 +22,10 @@ class Destination {
 // I transformed a form into a drop-down menu; There is a better way! Just do the drop-down menu directly without creating a select and option first;
 
   destinationsRender() {
+    var wholeContainer = $("<div>", {
+      class: "wholeContainer",
+      id: "wholeContainer",
+    })
     // formContainer contains essentially every drop-down options and itself;
     var formContainer = $("<div>", {
       class: "formContainer",
@@ -72,8 +76,9 @@ class Destination {
       id: "distanceDisplay",
     });
     formContainer.append(form, selectContainer, optionContainer);
-    $("body").append(formContainer, distance);
-    $("body").click(this.handleClick);
+    $("#wholeContainer").append(formContainer, distance);
+    $("body").append(wholeContainer);
+    $("#wholeContainer").click(this.handleClick);
   }
 
   handleChange(event) {
@@ -86,16 +91,16 @@ class Destination {
     this.handleCancel();
     $(".confirm_destination_button").click(() => {
       var rocket = new Transportation(parseInt(distance));
-      $('body').empty();
+      $('#wholeContainer').empty();
       rocket.sendApiRequest(rocket.rockets);
     });
   }
 
   handleClick() {
     if ($("#options").hasClass("sekect_hide")) {
-      $("body").off("click", this.handleCancel);
+      $("#wholeContainer").off("click", this.handleCancel);
     } else {
-      $("body").on("click", this.handleCancel);
+      $("#wholeContainer").on("click", this.handleCancel);
     }
   }
 

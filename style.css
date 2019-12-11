@@ -9,7 +9,8 @@ body * {
   box-sizing: border-box;
   display: flex;
 }
-.temporary_container {
+.temporary_container,
+.wholeContainer {
   height: 100%;
   width: 100%;
   border: solid black 1px;
@@ -37,10 +38,11 @@ body * {
 }
 
 /* css for Andrew's container stuff */
-body, .formContainer{
+.wholeContainer, .formContainer{
   display: flex;
   flex-direction: column;
   text-align: center;
+  justify-content: center;
 }
 .formContainer {
   position: relative;
@@ -69,6 +71,7 @@ body, .formContainer{
   height: 100%;
   overflow-y: scroll;
   text-align: center;
+  flex-direction: column;
 }
 .option_divs {
   padding: 10px;
