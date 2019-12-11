@@ -17,6 +17,7 @@ class Taco{
   }
 
   getTacoDataFromServer(){
+    this.tacoGenerator.hide();
     var ApiForTaco = new ApiGenerator(this.randomTacoUrl, this.processGetTacoDataFromServer);
     ApiForTaco.getResponse(this.randomTacoUrl, "json");
   }
