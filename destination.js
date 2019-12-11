@@ -7,35 +7,15 @@ class Destination {
     this.planetDistance = null;
     this.destinationUrl = 'https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=exoplanets&select= pl_name';
     this.destinationDistanceUrl = 'https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=exoplanets&select= st_dist';
-
-    // this.returnValues1 = this.returnValues1.bind(this);
-    // this.returnValues2 = this.returnValues2.bind(this);
-
+    this.confirmButton = $('<button>', {
+      class: 'confirm_destination_button'
+    }).text('confirm');
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
   }
 
-  // getResponse1() {
-  //   this.planetApi = new ApiGenerator(this.destinationUrl, this.returnValues1);
-  //   this.planetApi.getResponse(this.destinationUrl, 'text');
-  // }
-  // getResponse2() {
-  //   this.planetDistance = new ApiGenerator(this.destinationDistanceUrl, this.returnValues2);
-  //   this.planetDistance.getResponse(this.destinationDistanceUrl, 'text');
-  // }
-
-  // returnValues1(response) {
-  //   this.responsePlanet = response.split('\n');
-  //   this.destinationsRender();
-  // }
-  // returnValues2(response) {
-  //   this.responseDistance = response.split('\n');
-  // }
-
   checkToRun() {
-    // this.getResponse1();
-    // this.getResponse2();
     this.destinationsRender();
   }
 
@@ -78,14 +58,12 @@ class Destination {
           text: option.text(),
         });
         optionDiv.on("click", this.handleChange);
-
         optionContainer.append(optionDiv);
       }
       form.append(option);
     }
     selectContainer.on("click", function (event) {
       event.stopPropagation();
-      // this.closeAllSelect(this);
       $("#options").toggleClass("select_hide");
       $(event.currentTarget).toggleClass("select_arrow_display");
     });
@@ -94,8 +72,8 @@ class Destination {
       id: "distanceDisplay",
     });
     formContainer.append(form, selectContainer, optionContainer);
-    $("#andrew").append(formContainer, distance);
-    $("#andrew").click(this.handleClick);
+    $("body").append(formContainer, distance);
+    $("body").click(this.handleClick);
   }
 
   handleChange(event) {
@@ -103,15 +81,21 @@ class Destination {
     var indexNumber = this.responsePlanet.indexOf(currentText);
     var distance = this.responseDistance[indexNumber];
     $("#distanceDisplay").text('Distance To The Destination Planet: ' + distance + ' parsec');
+    $("#distanceDisplay").append(this.confirmButton);
     $("#selectContainer").text(currentText);
     this.handleCancel();
+    $(".confirm_destination_button").click(() => {
+      var rocket = new Transportation(parseInt(distance));
+      $('body').empty();
+      rocket.sendApiRequest(rocket.rockets);
+    });
   }
 
   handleClick() {
     if ($("#options").hasClass("sekect_hide")) {
-      $("#andrew").off("click", this.handleCancel);
+      $("body").off("click", this.handleCancel);
     } else {
-      $("#andrew").on("click", this.handleCancel);
+      $("body").on("click", this.handleCancel);
     }
   }
 
