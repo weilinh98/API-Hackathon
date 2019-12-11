@@ -2,7 +2,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   height: 100vh;
-  overflow-y: scroll;
   margin: 0;
 }
 body * {
@@ -173,30 +172,61 @@ body, .formContainer{
   width: 100%;
   height: 100%;
   flex-wrap: wrap;
+  overflow: hidden;
+}
+.transportation_page_container *, .transportation_rocket_image_container2 * {
+  font-family: 'Quicksand', sans-serif;
 }
 .transportation_title_container {
-  width: 60%;
+  width: 100%;
   height: 10%;
 }
 .transportation_title_container * {
   margin: auto;
+  font-size: 3em;
+  text-shadow: black 1px 1px;
 }
 .trainsportation_rocket_container {
-  width: 50%;
-  height: 45%;
+  width: 46%;
+  height: 40%;
+  background-color: rgba(95, 158, 160, 0.3);
+  margin: 2%;
+  border-radius: 5px;
 }
 .transportation_rocket_image_container {
   width: 80%;
+  padding: 2%;
 }
 .transportation_rocket_image_container2 {
-  height: 90%;
-  width: 60%;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  flex-direction: column;
+  color: ghostwhite;
+  text-shadow: black 1px 1px 1px;
+  margin: auto;
+}
+.transportation_rocket_info_content_container {
+  height: 80%;
+  width: 50%;
+  flex-wrap: wrap;
+  padding: 1%;
+  background-color: rgba(95, 158, 160, 0.2);
+  margin: 2%;
+  border-radius: 5px;
+}
+.transportation_rocket_info_content_container > div:nth-child(2) {
+  flex-wrap: wrap;
 }
 .transportation_rocket_name_container {
-  width: 20%;
+  width: 10%;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding: 10%;
 }
-.transportation_rocket_image_container > *, .transportation_rocket_image_container2 > * {
+.transportation_rocket_image_container > * {
   width: 100%;
+  border-radius: 5px;
 }
 .transportation_rocket_text_container {
   width: 40%;
@@ -216,8 +246,10 @@ body, .formContainer{
 }
 .innerRocketInfoText {
   width: 100%;
-  height: 50%;
+  height: 20%;
 }
-.transportation_title_span {}
-.rocket_name_span {}
+.transportation_rocket_image_container2 button {
+  margin: auto;
+  border-radius: 5px;
+}
 /*rocket stuff above*/

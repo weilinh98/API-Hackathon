@@ -166,19 +166,20 @@ class Transportation {
   createRocketInfoPage(response) {
     this.formatTime(response.id);
     const titleDiv = this.renderContainer(this.renderSpan("You chose " + response.rocket_name, this.classAttr.titleSpan), this.classAttr.titleContainer);
+    //const imageDiv = this.renderContainer(this.renderRocketImage(response.flickr_images[1], response.description), this.classAttr.rocketImageContainer + "2");
+    const imageDiv = $('<div>', {
+      class: this.classAttr.rocketImageContainer + "2"
+    }).css("background-image", "url(" + response.flickr_images[1] + ")");
+    const textDiv = $('<div>').append(this.renderContainer(this.renderSpan(response.description, this.classAttr.rocketInfoSpan), "innerRocketInfoText"), this.renderContainer(this.renderSpan(this.formattedTime, this.classAttr.rocketTimeSpan), "innerRocketInfoText"));
+    const buttonDiv = this.renderContainer($('<button>').addClass('button confirmRocket').text('confirm'), this.classAttr.rocketButtonContainer).append($('<button>').addClass('button cancelRocket').text("cancel"));
+    this.parentContainer.append(imageDiv.append($('<div>', {
+      class: 'transportation_rocket_info_content_container'
+    }).append(titleDiv, textDiv, buttonDiv)));
 
-
-    this.parentContainer.append(this.renderContainer(titleDiv, this.classAttr.pageContainer));
-    const timeTextDiv = $('<div>').append(this.renderContainer(this.renderSpan(response.description, this.classAttr.rocketInfoSpan), "innerRocketInfoText"), this.renderContainer(this.renderSpan(this.formattedTime, this.classAttr.rocketTimeSpan), "innerRocketInfoText"));
-    $('.transportation_page_container').append(this.renderContainer(this.renderRocketImage(response.flickr_images[1], response.description), this.classAttr.rocketImageContainer + "2"),
-      this.renderContainer(this.renderContainer(timeTextDiv, this.classAttr.rocketTimeContainer), this.classAttr.rocketTextContainer)
-        .append(this.renderContainer($('<button>').addClass('confirm_button confirmRocket').text('confirm'), this.classAttr.rocketButtonContainer).append($('<button>').addClass('cancel_button cancelRocket').text("cancel"))));
     $('.cancelRocket').off();
     $('.confirmRocket').off();
     $('.confirmRocket').click(() => {
       $('body').empty();
-      debugger;
-      // this.destinationTime
       const newTaco = new Taco();
       newTaco.renderMain();
     });
