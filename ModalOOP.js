@@ -28,7 +28,6 @@ class Modal {
     var destinationDrop = new Destination();
     destinationDrop.checkToRun();
     var taco = new Taco();
-    taco.addClickHandler();
   }
 
   //below is a basic dynamic-creation structure if we want to do it dynamically;

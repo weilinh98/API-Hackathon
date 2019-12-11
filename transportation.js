@@ -178,8 +178,10 @@ class Transportation {
     $('.confirmRocket').off();
     $('.confirmRocket').click(() => {
       $('body').empty();
-      const newTaco = new Taco(this.destinationTime);
-      //call dom creation function in Taco here
+      debugger;
+      // this.destinationTime
+      const newTaco = new Taco();
+      newTaco.renderMain();
     });
     $('.cancelRocket').click(() => {
       this.sendApiRequest(this.rockets);
