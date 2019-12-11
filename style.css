@@ -90,9 +90,31 @@ body, .formContainer{
   width: 100%;
 }
 
+#backgroundVideo{
+  position: fixed;
+  width: 100vw;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
 .taco-selection{
-  height: 20%;
-  width: 100%;
+  height: 10%;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: pink;
+}
+
+.taco-selection > img{
+  height: 100%;
+}
+
+.taco-selection > img:hover{
+  height: 130%;
+  transition-duration: 0.5s;
 }
 .taco-recipe{
   font-family: 'Lilita One', cursive;
@@ -143,7 +165,7 @@ body, .formContainer{
   height: 100%;
   width: 100%;
   text-align: center;
-  background-image: url('./page-background.jpeg');
+  background-image: url('./assets-for-taco/page-background.jpeg');
   background-size: cover;
   transform-origin: right;
   transition: 1s;
@@ -164,7 +186,17 @@ body, .formContainer{
   z-index: -1;
   text-align: center;
   border-radius: 20px;
-  background-image: url('./recipe-background.jpeg');
+  background-image: url('./assets-for-taco/recipe-background.jpeg');
+}
+
+.taco-amount{
+      height: 10%;
+    position: relative;
+    width: 100%;
+    color: pink;
+    top: 37%;
+    display: flex;
+    justify-content: center;
 }
 
 /*rocket stuff below*/
