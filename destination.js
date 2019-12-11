@@ -92,7 +92,7 @@ class Destination {
   }
 
   handleClick() {
-    if ($("#options").hasClass("sekect_hide")) {
+    if ($("#options").hasClass("select_hide")) {
       $("body").off("click", this.handleCancel);
     } else {
       $("body").on("click", this.handleCancel);
