@@ -1,10 +1,8 @@
 class Taco{
-  constructor(){
+  constructor(destinationTime){
     this.randomTacoUrl = "http://taco-randomizer.herokuapp.com/random/";
     this.tacoGenerator = null;
-    this.detailsPage = $('.details');
-    this.cover = $('.cover');
-    this.tacoDomElement = null;
+    this.tacoAmount = (parseInt(destinationTime)/86400)*10;
     this.tacoResponse = null;
     this.getTacoDataFromServer = this.getTacoDataFromServer.bind(this);
     this.processGetTacoDataFromServer = this.processGetTacoDataFromServer.bind(this);
@@ -14,7 +12,8 @@ class Taco{
     var container = $('<div>').attr('id', 'taco-container');
     var tacoSelection = $('<div>').addClass('taco-selection');
     var title = $('<h3>').text('Generate a Full Fantastic Taco Recipe for Your Trip!');
-    this.tacoGenerator = $('<button>').attr('id', 'taco-generator').text('Get my Taco!').on('click', this.getTacoDataFromServer);
+    this.tacoGenerator = $('<img>').attr({'id': 'taco-generator','src': 'assets-for-taco/taco-png-bfdi-3.png'}).on('click', this.getTacoDataFromServer);
+    container.append('<video autoplay muted loop id="backgroundVideo"> <source src="assets-for-taco/starburst.mp4" type="video/mp4"> </video>')
     $('body').append(container.append(tacoSelection.append(title, this.tacoGenerator)));
   }
 
@@ -48,8 +47,9 @@ class Taco{
     var tacoRecipe = $('<div>').addClass('taco-recipe');
     var book = $('<div>').addClass('book');
     var cover = $('<div>').addClass('cover');
-    var coverImage = $('<img>').attr('src', './taco-book.jpeg')
-    var details = $('<div>').addClass('details').text(tacoName);
+    var coverImage = $('<img>').attr('src', 'assets-for-taco/taco-book.jpeg')
+    var details = $('<div>').addClass('details')
+    var tacoMain = $('<h2>').text(tacoName);
     var recipe = $('<div>').addClass('recipe').text(tacoRecipe);
     var part;
     for (var key in generatedRecipe) {
@@ -57,10 +57,17 @@ class Taco{
       recipe.append(part);
     }
     cover.append(coverImage);
-    book.append(cover, details, recipe);
-    $('body').append(tacoRecipe.append(book));
+    book.append(cover, details.append(tacoMain), recipe);
+    $('#taco-container').append(tacoRecipe.append(book));
     cover.on('click', () => { cover.addClass('cover-rotate') });
     details.on('click', () => { details.addClass('details-rotate') });
+    this.renderTacoAmount();
   }
 
+  renderTacoAmount(){
+    var tacoAmountDiv = $('<div>').addClass('taco-amount');
+    var tacoTitle = $('<h2>').text("You can eat " + parseInt(this.tacoAmount) + " taco during this travel!");
+    tacoAmountDiv.append(tacoTitle);
+    $('#taco-container').append(tacoAmountDiv);
+  }
 }

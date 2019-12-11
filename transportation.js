@@ -180,7 +180,7 @@ class Transportation {
     $('.confirmRocket').off();
     $('.confirmRocket').click(() => {
       $('body').empty();
-      const newTaco = new Taco();
+      const newTaco = new Taco(this.destinationTime);
       newTaco.renderMain();
     });
     $('.cancelRocket').click(() => {
