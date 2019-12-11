@@ -141,6 +141,7 @@ body * {
 
 /* css for others */
 #taco-container{
+  font-family: 'Quicksand', sans-serif;
   display: flex;
   flex-wrap: wrap;
   position: relative;
@@ -157,13 +158,13 @@ body * {
 }
 
 .taco-selection{
+  color: whitesmoke;
   height: 10%;
     width: 100%;
     display: flex;
     text-align: center;
     align-items: center;
     justify-content: center;
-    color: pink;
 }
 
 .taco-selection > img{
@@ -175,8 +176,7 @@ body * {
   transition-duration: 0.5s;
 }
 .taco-recipe{
-  font-family: 'Lilita One', cursive;
-  color: white;
+  color: salmon;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -216,6 +216,7 @@ body * {
 }
 
 .book .details{
+  color: aquamarine;
   border-radius: 20px;
   position: absolute;
   top: 0;
@@ -223,7 +224,7 @@ body * {
   height: 100%;
   width: 100%;
   text-align: center;
-  background-image: url('./assets-for-taco/page-background.jpeg');
+  background-image: url('assets-for-taco/details.jpg');
   background-size: cover;
   transform-origin: right;
   transition: 1s;
@@ -235,7 +236,6 @@ body * {
 
 .book .recipe{
   overflow-y: scroll;
-  font-size: 1rem;
   position: absolute;
   top: 0;
   left: 0;
@@ -243,11 +243,11 @@ body * {
   width: 100%;
   z-index: -1;
   border-radius: 20px;
-  background-image: url('./assets-for-taco/recipe-background.jpeg');
+  background-image: url('assets-for-taco/recipe.jpg');
 }
 
 .taco-amount{
-      height: 10%;
+    height: 10%;
     position: relative;
     width: 100%;
     color: pink;
