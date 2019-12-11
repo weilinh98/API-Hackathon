@@ -2,6 +2,8 @@ class Taco{
   constructor(){
     this.randomTacoUrl = "http://taco-randomizer.herokuapp.com/random/";
     this.tacoGenerator = $('#taco-generator');
+    this.detailsPage = $('.details');
+    this.cover = $('.cover');
     this.tacoDomElement = null;
     this.tacoResponse = null;
     this.getTacoDataFromServer = this.getTacoDataFromServer.bind(this);
@@ -10,48 +12,42 @@ class Taco{
 
   addClickHandler(){
     this.tacoGenerator.on('click', this.getTacoDataFromServer);
+    this.cover.on('click', ()=>{this.cover.addClass('cover-rotate')});
+    this.detailsPage.on('click', ()=> {this.detailsPage.addClass('details-rotate')});
   }
 
   getTacoDataFromServer(){
-    debugger;
     var ApiForTaco = new ApiGenerator(this.randomTacoUrl, this.processGetTacoDataFromServer);
-    this.tacoResponse = ApiForTaco.getResponse(this.randomTacoUrl, "json");
-    this.processGetTacoDataFromServer(this.tacoResponse);
+    ApiForTaco.getResponse(this.randomTacoUrl, "json");
   }
 
   processGetTacoDataFromServer(response){
-    var unprocessedTaco = {
-      baseLayer: response.base_layer.slug.replace(/_/g, " "),
-      condiment: response.condiment.slug.replace(/_/g, " "),
-      mixin: response.mixin.slug.replace(/_/g, " "),
-      seasoning: response.seasoning.slug.replace(/_/g, " "),
-      shell: response.shell.slug.replace(/_/g, " "),
+    console.log(response);
+    var taco = {
+      baseLayer: response.base_layer.name,
+      condiment: response.condiment.name,
+      mixin: response.mixin.slug.name,
+      seasoning: response.seasoning.name,
+      shell: response.shell.name,
     };
-    var taco = this.formatTacoName(unprocessedTaco);
-    var tacoName = taco.baseLayer + " with " + taco.condiment + " garnished with " + taco.mixin + " topped off with " + taco.seasoning + " wrapped in " + taco.shell;
-    this.updateRecipeOnDom(tacoName);
-  }
-
-  formatTacoName(taco) {
-    for (var key in taco) {
-      var partNameInArray = taco[key].split(" ");
-      var partWord = null;
-      for (var i = 0; i < partNameInArray.length; i++) {
-        if (partNameInArray[i] === "us") {
-          partWord = "US";
-        }
-        else {
-          partWord = partNameInArray[i].replace(partNameInArray[i].charAt(0), partNameInArray[i].charAt(0).toUpperCase());
-        }
-        partNameInArray[i] = partWord;
-      }
-      taco[key] = partNameInArray.join(" ");
+    var recipe = {
+      baseLayer: response.base_layer.recipe,
+      condiment: response.condiment.recipe,
+      mixin: response.mixin.slug.recipe,
+      seasoning: response.seasoning.recipe,
+      shell: response.shell.recipe,
     }
-    return taco;
+    var tacoName = taco.baseLayer + " with " + taco.condiment + " garnished with " + taco.mixin + " topped off with " + taco.seasoning + " wrapped in " + taco.shell;
+    this.updateRecipeOnDom(tacoName, recipe);
   }
 
-  updateRecipeOnDom(taconame) {
-    $('#taco-name').text(taconame);
+
+  updateRecipeOnDom(taconame, recipe) {
+    $('.details').text(taconame);
+    for(var key in recipe){
+      var section = $('<div>').text(recipe[key]);
+      $('.recipe').append(section);
+    }
     $('.taco-recipe').show();
   }
 

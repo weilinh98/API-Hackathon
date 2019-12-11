@@ -16,7 +16,7 @@ class ApiGenerator {
       success: this.componentCallback,
       error: this.processGetServerError,
     };
-   return $.ajax(ajaxConfigObject);
+    $.ajax(ajaxConfigObject);
   }
 
   returnResponse(response) {

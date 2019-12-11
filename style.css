@@ -23,6 +23,8 @@ body * {
   height: 20%;
 }
 .taco-recipe{
+  font-family: 'Lilita One', cursive;
+  color: white;
   display: none;
   position: absolute;
   top: 50%;
@@ -33,7 +35,7 @@ body * {
 }
 .book{
   position: relative;
-  width: 100%;
+  width: 80%;
   height: 100%;
   transform-style: preserve-3d;
   transform: perspective(2000px)
@@ -41,15 +43,15 @@ body * {
 
 .book .cover{
   position: relative;
-  width: 80%;
+  width: 100%;
   height: 100%;
   transform-origin: left;
   z-index: 1;
   transition: 1s;
 }
 
-.book:hover .cover{
-  transform: rotateY(-135deg)
+.cover-rotate{
+  transform: rotateY(-135deg);
 }
 
 .cover > img{
@@ -63,8 +65,33 @@ body * {
 }
 
 .book .details{
+  border-radius: 20px;
   position: absolute;
   top: 0;
   left: 0;
+  height: 100%;
+  width: 100%;
   text-align: center;
+  background-image: url('/page-background.jpeg');
+  background-size: cover;
+  transform-origin: right;
+  transition: 1s;
+}
+
+.details-rotate{
+  transform: rotateY(135deg);
+}
+
+.book .recipe{
+  overflow-y: scroll;
+  font-size: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  text-align: center;
+  border-radius: 20px;
+  background-image: url('/recipe-background.jpeg');
 }
