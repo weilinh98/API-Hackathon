@@ -46,7 +46,6 @@ class Transportation {
   formatTime(mod) {
     this.mileDistance = this.convertParsecToMile();
     this.destinationTime = this.calculateTravelTime();
-    console.log("destination time: ", this.destinationTime);
     let timeInCalculation = (this.destinationTime * 2.25* Math.pow(2/3, mod-1)).toFixed(2);
     this.destinationTime = timeInCalculation;
     let timeSegments = {
@@ -159,21 +158,24 @@ class Transportation {
   getSingleRocketInfo() {
     this.selectedRocket = $(event.currentTarget).attr('rocket_id');
     const rocketName = this.rockets + this.selectedRocket;
-    console.log("rocketName: ", rocketName);
     const singleRocket = new ApiGenerator(rocketName, this.createRocketInfoPage);
     singleRocket.getResponse(rocketName, "json");
     this.parentContainer.empty();
   }
 
   createRocketInfoPage(response) {
-    console.log(response);
     this.formatTime(response.id);
     const titleDiv = this.renderContainer(this.renderSpan("You chose " + response.rocket_name, this.classAttr.titleSpan), this.classAttr.titleContainer);
-    this.parentContainer.append(this.renderContainer(titleDiv, this.classAttr.pageContainer));
-    const timeTextDiv = $('<div>').append(this.renderContainer(this.renderSpan(response.description, this.classAttr.rocketInfoSpan), "innerRocketInfoText"), this.renderContainer(this.renderSpan(this.formattedTime, this.classAttr.rocketTimeSpan), "innerRocketInfoText"));
-    $('.transportation_page_container').append(this.renderContainer(this.renderRocketImage(response.flickr_images[1], response.description), this.classAttr.rocketImageContainer + "2"),
-      this.renderContainer(this.renderContainer(timeTextDiv, this.classAttr.rocketTimeContainer), this.classAttr.rocketTextContainer)
-        .append(this.renderContainer($('<button>').addClass('confirm_button confirmRocket').text('confirm'), this.classAttr.rocketButtonContainer).append($('<button>').addClass('cancel_button cancelRocket').text("cancel"))));
+    //const imageDiv = this.renderContainer(this.renderRocketImage(response.flickr_images[1], response.description), this.classAttr.rocketImageContainer + "2");
+    const imageDiv = $('<div>', {
+      class: this.classAttr.rocketImageContainer + "2"
+    }).css("background-image", "url(" + response.flickr_images[1] + ")");
+    const textDiv = $('<div>').append(this.renderContainer(this.renderSpan(response.description, this.classAttr.rocketInfoSpan), "innerRocketInfoText"), this.renderContainer(this.renderSpan(this.formattedTime, this.classAttr.rocketTimeSpan), "innerRocketInfoText"));
+    const buttonDiv = this.renderContainer($('<button>').addClass('button confirmRocket').text('confirm'), this.classAttr.rocketButtonContainer).append($('<button>').addClass('button cancelRocket').text("cancel"));
+    this.parentContainer.append(imageDiv.append($('<div>', {
+      class: 'transportation_rocket_info_content_container'
+    }).append(titleDiv, textDiv, buttonDiv)));
+
     $('.cancelRocket').off();
     $('.confirmRocket').off();
     $('.confirmRocket').click(() => {
@@ -186,11 +188,3 @@ class Transportation {
     });
   }
 }
-//create entertainment class using time
-
-//get spaceX spaceship info using api
-//display spaceships dynamically
-//dynamically display space ship data
-//user choose spaceship
-
-//use google map api to show route?
