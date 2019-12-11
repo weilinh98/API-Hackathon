@@ -14,6 +14,27 @@ body * {
   border: solid black 1px;
 }
 
+
+/* css for modal */
+.introductionModal {
+  height: 50%;
+  widtH: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  border: 1px solid black;
+}
+.triggerButton {
+  background-color: salmon;
+  cursor: pointer;
+  margin: 50px auto;
+  padding: 10px;
+}
+
 /* css for Andrew's container stuff */
 #andrew, .formContainer{
   display: flex;
