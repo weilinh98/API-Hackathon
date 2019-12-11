@@ -222,12 +222,8 @@ body * {
   left: 0;
   height: 100%;
   width: 100%;
-<<<<<<< HEAD
-  background-image: url('./page-background.jpeg');
-=======
   text-align: center;
   background-image: url('./assets-for-taco/page-background.jpeg');
->>>>>>> 04fe998cfb9b83455ad894d7f0df84d2d88014f3
   background-size: cover;
   transform-origin: right;
   transition: 1s;
