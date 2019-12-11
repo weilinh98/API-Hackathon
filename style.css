@@ -37,7 +37,7 @@ body * {
 }
 
 /* css for Andrew's container stuff */
-#andrew, .formContainer{
+body, .formContainer{
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -141,7 +141,7 @@ body * {
   height: 100%;
   width: 100%;
   text-align: center;
-  background-image: url('/page-background.jpeg');
+  background-image: url('./page-background.jpeg');
   background-size: cover;
   transform-origin: right;
   transition: 1s;
@@ -162,7 +162,7 @@ body * {
   z-index: -1;
   text-align: center;
   border-radius: 20px;
-  background-image: url('/recipe-background.jpeg');
+  background-image: url('./recipe-background.jpeg');
 }
 
 /*rocket stuff below*/

@@ -10,7 +10,7 @@ class Transportation {
     this.request = null;
     this.response = null;
     this.selectedRocket = null;
-    this.parentContainer = $('#yun');
+    this.parentContainer = $('body');
     this.rockets = "https://api.spacexdata.com/v3/rockets/";
     this.dragons = "https://api.spacexdata.com/v3/dragons/";
     this.launchpads = "https://api.spacexdata.com/v3/launchpads/";
@@ -48,6 +48,7 @@ class Transportation {
     this.destinationTime = this.calculateTravelTime();
     console.log("destination time: ", this.destinationTime);
     let timeInCalculation = (this.destinationTime * 2.25* Math.pow(2/3, mod-1)).toFixed(2);
+    this.destinationTime = timeInCalculation;
     let timeSegments = {
       millennium: {
         convertion: 3.15e10,
@@ -100,7 +101,7 @@ class Transportation {
       + timeSegments.day.time + " day, " + timeSegments.hour.time + " hour, " + timeSegments.minute.time + " minute, "
       + timeSegments.second.time + " second";
     return {
-      timeInSeconds: this.calculateTravelTime,
+      timeInSeconds: this.destinationTime,
       formattedTime: this.formattedTime
     }
   }
@@ -175,6 +176,11 @@ class Transportation {
         .append(this.renderContainer($('<button>').addClass('confirm_button confirmRocket').text('confirm'), this.classAttr.rocketButtonContainer).append($('<button>').addClass('cancel_button cancelRocket').text("cancel"))));
     $('.cancelRocket').off();
     $('.confirmRocket').off();
+    $('.confirmRocket').click(() => {
+      $('body').empty();
+      const newTaco = new Taco(this.destinationTime);
+      //call dom creation function in Taco here
+    });
     $('.cancelRocket').click(() => {
       this.sendApiRequest(this.rockets);
     });
