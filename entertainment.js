@@ -35,7 +35,7 @@ class Taco{
     var recipe = {
       baseLayer: response.base_layer.recipe,
       condiment: response.condiment.recipe,
-      mixin: response.mixin.slug.recipe,
+      mixin: response.mixin.recipe,
       seasoning: response.seasoning.recipe,
       shell: response.shell.recipe,
     }
@@ -43,31 +43,36 @@ class Taco{
     this.renderRecipe(tacoName, recipe);
   }
 
+
   renderRecipe(tacoName, generatedRecipe) {
     var tacoRecipe = $('<div>').addClass('taco-recipe');
     var book = $('<div>').addClass('book');
     var cover = $('<div>').addClass('cover');
     var coverImage = $('<img>').attr('src', 'assets-for-taco/taco-book.jpeg')
     var details = $('<div>').addClass('details')
-    var tacoMain = $('<h2>').text(tacoName);
-    var recipe = $('<div>').addClass('recipe').text(tacoRecipe);
-    var part;
+    var tacoMain = $('<h3>').text(tacoName);
+    var recipe = $('<div>').addClass('recipe');
+    var part = $('<div>');
     for (var key in generatedRecipe) {
-      part = $('<div>').text(generatedRecipe[key])
-      recipe.append(part);
+      part.text(generatedRecipe[key]).css({'margin-right': '2px'})
     }
+    recipe.append(part);
     cover.append(coverImage);
     book.append(cover, details.append(tacoMain), recipe);
     $('#taco-container').append(tacoRecipe.append(book));
-    cover.on('click', () => { cover.addClass('cover-rotate') });
-    details.on('click', () => { details.addClass('details-rotate') });
+    cover.on('click', () => { cover.toggleClass('cover-rotate') });
+    details.on('click', () => { details.toggleClass('details-rotate') });
     this.renderTacoAmount();
   }
 
   renderTacoAmount(){
     var tacoAmountDiv = $('<div>').addClass('taco-amount');
-    var tacoTitle = $('<h2>').text("You can eat " + parseInt(this.tacoAmount) + " taco during this travel!");
-    tacoAmountDiv.append(tacoTitle);
+    var tacoTitle = $('<h2>').text("You can eat " + parseInt(this.tacoAmount) + " tacos during this travel!");
+    var startAgain = $('<button>').text("Play Again!").on('click', () => {
+      $('body').empty();
+      var newModal = new Modal();
+      newModal.createIntroModal();})
+    tacoAmountDiv.append(tacoTitle, startAgain);
     $('#taco-container').append(tacoAmountDiv);
   }
 }
