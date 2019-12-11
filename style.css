@@ -45,15 +45,14 @@ body * {
 #temperatureDisplay,
 #massDisplay {
   margin: 20px auto;
-  font-family: sans-serif;
+  font-family: 'Quicksand',sans-serif;
+  color: snow;
 }
 /* css for modal */
 .introductionModal {
-  height: 50%;
-  widtH: 50%;
-  position: fixed;
-  top: 25%;
-  left: 25%;
+  height: 100%;
+  widtH: 100%;
+  position: relative;
   border: 1px solid black;
 }
 .triggerButton {
@@ -61,6 +60,34 @@ body * {
   cursor: pointer;
   margin: 50px auto;
   padding: 10px;
+  font-family: 'Quicksand', sans-serif;
+  font-style: oblique;
+  font-size: 20px;
+  border-radius: 25%;
+  opacity: 0.6;
+}
+.triggerButton:hover {
+  opacity: 1;
+}
+/* @keyframes flyText {
+  0% {
+    font-size: 12px;
+  }
+  100% {
+    font-size: 100px;
+  }
+}
+.fly1,
+.fly2,
+.fly3,
+.fly4 {
+} */
+.fly {
+  position: absolute;
+  color: snow;
+  /* animation-name: flyText;
+  animation-duration: 2s;
+  animation-delay: 2s; */
 }
 
 /* css for Andrew's container stuff */
@@ -88,7 +115,6 @@ body * {
   height: 100%;
   overflow-y: scroll;
   text-align: center;
-  display: inline-block;
 }
 .option_divs {
   padding: 10px;
@@ -97,7 +123,7 @@ body * {
   background-color: steelblue;
 }
 .option_divs:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgb(247, 221, 135);
 }
 .sideContainer {
   width: 50%;
@@ -134,6 +160,7 @@ body * {
   padding: 20px 40px;
   background-color: skyblue;
   opacity: 0.6;
+  margin: auto;
 }
 .confirm_destination_button:hover {
   opacity: 1;
