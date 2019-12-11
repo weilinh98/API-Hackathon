@@ -265,6 +265,7 @@ body * {
 }
 .transportation_page_container *, .transportation_rocket_image_container2 * {
   font-family: 'Quicksand', sans-serif;
+  color: ghostwhite;
 }
 .transportation_title_container {
   width: 100%;
@@ -340,5 +341,6 @@ body * {
 .transportation_rocket_image_container2 button {
   margin: auto;
   border-radius: 5px;
+  color: black;
 }
 /*rocket stuff above*/
