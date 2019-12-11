@@ -27,7 +27,6 @@ class Modal {
     this.destroyModal();
     var destinationDrop = new Destination();
     destinationDrop.checkToRun();
-    var taco = new Taco();
   }
 
   //below is a basic dynamic-creation structure if we want to do it dynamically;
