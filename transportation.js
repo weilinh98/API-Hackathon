@@ -95,6 +95,20 @@ class Transportation {
         timeSegments[key].time = 0;
       }
     }
+    if (JSON.stringify(timeSegments.millennium.time).length > 3) {
+      let newMilRev = "";
+      let newMil = "";
+      for (let i = JSON.stringify(timeSegments.millennium.time).length-1; i >=0; i--) {
+        newMilRev += JSON.stringify(timeSegments.millennium.time)[i];
+        if ((JSON.stringify(timeSegments.millennium.time).length - i ) % 3 === 0 && i !== 0) {
+          newMilRev += ",";
+        }
+      }
+      for (let i = newMilRev.length-1; i >=0; i--) {
+        newMil += newMilRev[i];
+      }
+      timeSegments.millennium.time = newMil;
+    }
     this.formattedTime ="Total travel time: " + timeSegments.millennium.time + " millennium, " + timeSegments.centry.time + " centry, "
       + timeSegments.decade.time + " decade, " + timeSegments.year.time + " year, " + timeSegments.month.time + " month, "
       + timeSegments.day.time + " day, " + timeSegments.hour.time + " hour, " + timeSegments.minute.time + " minute, "

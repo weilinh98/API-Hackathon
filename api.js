@@ -13,7 +13,7 @@ class ApiGenerator {
       dataType: type,
       url: url,
       method: "GET",
-      
+
       success: this.processGetServerData,
       error: this.processGetServerError,
     };
