@@ -144,7 +144,7 @@ class Transportation {
 
   createRocketSelectionPage() {
     this.parentContainer.empty();
-    const titleDiv = this.renderContainer(this.renderSpan("Choose a vessel for your trip", this.classAttr.titleSpan), this.classAttr.titleContainer).append('<video autoplay muted loop id="backgroundVideo"> <source src="assets-for-taco/starburst.mp4" type="video/mp4"> </video>');
+    const titleDiv = this.renderContainer(this.renderSpan("Choose a vessel for your trip", this.classAttr.titleSpan), this.classAttr.titleContainer).append('<video autoplay muted loop class="backgroundVideo"> <source src="assets-for-taco/starburst.mp4" type="video/mp4"> </video>');
     this.parentContainer.append(this.renderContainer(titleDiv, this.classAttr.pageContainer));
     const pageContainer = $('.transportation_page_container');
     for (var i = 0; i < this.response.length; i++) {

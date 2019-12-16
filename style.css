@@ -168,7 +168,7 @@ body * {
 
 /* css for others */
 #taco-container{
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Pacifico', cursive;
   display: flex;
   flex-wrap: wrap;
   position: relative;
@@ -176,7 +176,7 @@ body * {
   width: 100%;
 }
 
-#backgroundVideo{
+.backgroundVideo{
   position: fixed;
   width: 100vw;
   height: 100%;
@@ -210,6 +210,7 @@ body * {
   transform: translate(-50%, -50%);
   height: 70%;
   width: 40%;
+  font-size: 1.5em;
 }
 .book{
   position: relative;
@@ -255,6 +256,8 @@ body * {
   background-size: cover;
   transform-origin: right;
   transition: 1s;
+  display: flex;
+  align-items: center;
 }
 
 .details-rotate{
