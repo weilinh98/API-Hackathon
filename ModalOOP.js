@@ -6,7 +6,7 @@ class Modal {
   }
 
   createIntroModal() {
-    $("body").append('<video autoplay muted loop id="backgroundVideo"> <source src="assets-for-taco/starburst.mp4" type="video/mp4"> </video>');
+    $("body").append('<video autoplay muted loop class="backgroundVideo"> <source src="assets-for-taco/starburst.mp4" type="video/mp4"> </video>');
     var modalContainer = $("<div>", {
       id: "introductionModal",
       class: "introductionModal",

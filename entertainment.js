@@ -2,7 +2,7 @@ class Taco{
   constructor(destinationTime){
     this.randomTacoUrl = "http://taco-randomizer.herokuapp.com/random/";
     this.tacoGenerator = null;
-    this.tacoAmount = (parseInt(destinationTime)/86400)*10;
+    this.tacoAmount = (parseInt(destinationTime/86400*10)).toLocaleString('en');
     this.tacoResponse = null;
     this.getTacoDataFromServer = this.getTacoDataFromServer.bind(this);
     this.processGetTacoDataFromServer = this.processGetTacoDataFromServer.bind(this);
@@ -13,7 +13,7 @@ class Taco{
     var tacoSelection = $('<div>').addClass('taco-selection');
     var title = $('<h3>').text('Generate a Full Fantastic Taco Recipe for Your Trip!');
     this.tacoGenerator = $('<img>').attr({'id': 'taco-generator','src': 'assets-for-taco/taco-png-bfdi-3.png'}).on('click', this.getTacoDataFromServer);
-    container.append('<video autoplay muted loop id="backgroundVideo"> <source src="assets-for-taco/starburst.mp4" type="video/mp4"> </video>')
+    container.append('<video autoplay muted loop class="backgroundVideo"> <source src="assets-for-taco/starburst.mp4" type="video/mp4"> </video>')
     $('body').append(container.append(tacoSelection.append(title, this.tacoGenerator)));
   }
 
@@ -50,7 +50,7 @@ class Taco{
     var cover = $('<div>').addClass('cover');
     var coverImage = $('<img>').attr('src', 'assets-for-taco/taco-book.jpeg')
     var details = $('<div>').addClass('details')
-    var tacoMain = $('<h3>').text(tacoName);
+    var tacoMain = $('<div>').text(tacoName);
     var recipe = $('<div>').addClass('recipe');
     var part = $('<div>');
     for (var key in generatedRecipe) {
@@ -67,12 +67,13 @@ class Taco{
 
   renderTacoAmount(){
     var tacoAmountDiv = $('<div>').addClass('taco-amount');
-    var tacoTitle = $('<h2>').text("You can eat " + parseInt(this.tacoAmount) + " tacos during this travel!");
-    var startAgain = $('<button>').text("Play Again!").on('click', () => {
+    var tacoTitle = $('<h2>').text("You can eat " + this.tacoAmount + " tacos during this travel!");
+    var startAgain = $('<img>').attr({ 'src': 'assets-for-taco/replay-img.png' }).on('click', () => {
       $('body').empty();
       var newModal = new Modal();
       newModal.createIntroModal();})
-    tacoAmountDiv.append(tacoTitle, startAgain);
+      setTimeout(()=>{$('.taco-selection').append(startAgain)}, 2000);
+    tacoAmountDiv.append(tacoTitle);
     $('#taco-container').append(tacoAmountDiv);
   }
 }
